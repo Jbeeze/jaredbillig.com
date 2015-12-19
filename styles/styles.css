@@ -2,34 +2,30 @@ body {
    max-width: 1500px;
    margin: 0 auto;
    font-family: "Montserrat",sans-serif;
-   border: 2px solid grey;
-   border-top: 0;
-   color: #344A5F;
+   color: #2C3E50;
+   padding:0;
 }
 
-a {
-   padding-right: 30px;
+h1, p {
+  margin: 0;
+  padding: 0;
 }
 
-h1,p {
-   margin:0 auto;
-}
-
-h1 {
+#header h1 {
   font-size: 7em;
   font-weight: 700;
   text-align: center;
 }
 
-.social-media {
+#header .social-media {
   text-align: center;
-  border-bottom: 2px solid grey;
+  border-bottom: 4px solid #105469;
 }
 
-p {
-   padding-bottom: 15px;
+#header .social-media a {
+  padding-right: 10px;
 }
 
-#blog {
+#header .social-media #blog {
   font-size: 29px;
 }
