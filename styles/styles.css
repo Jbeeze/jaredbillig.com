@@ -1,31 +1,42 @@
 body {
-   max-width: 1500px;
-   margin: 0 auto;
-   font-family: "Montserrat",sans-serif;
-   color: #2C3E50;
-   padding:0;
+   font-family: "Montserrat", sans-serif;
+   background-color: #2C3E50;
+   margin: 0;
+   padding: 0;
+   height: 100%;
 }
 
-h1, p {
-  margin: 0;
-  padding: 0;
+#container {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  margin-top: -150px;
+  margin-left: -385px;
 }
 
-#header h1 {
-  font-size: 7em;
+#container h1 {
+  font-size: 72px;
   font-weight: 700;
-  text-align: center;
+  color: #fff;
+  display: inline-block;
 }
 
-#header .social-media {
-  text-align: center;
-  border-bottom: 4px solid #105469;
+#container h1:nth-child(2){
+  position: relative;
+  left:-20px;
 }
 
-#header .social-media a {
-  padding-right: 10px;
+h2 {
+  color: #fff;
+  font-size: 36px;
 }
 
-#header .social-media #blog {
+a {
+  color: #fff;
+  padding: 15px 15px 0 0;
+}
+strong {
   font-size: 29px;
 }
