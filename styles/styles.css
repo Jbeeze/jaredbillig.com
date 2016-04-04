@@ -31,6 +31,8 @@ body {
 h2 {
   color: #fff;
   font-size: 36px;
+  height: auto;
+  width: 771px;
 }
 
 a {
@@ -47,4 +49,26 @@ a:hover,  a:focus {
 
 strong {
   font-size: 29px;
+}
+
+@media screen and (max-width: 770px){
+  h2 {
+    width:467px;
+  }
+  span {
+    display: none;
+  }
+  #container {
+    margin-top: -129px;
+    margin-left: -234px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  h1 {
+    font-size: 44px;
+  }
+  h2 {
+    font-size: 24px;
+  }
 }
