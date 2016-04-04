@@ -54,6 +54,7 @@ strong {
 @media screen and (max-width: 770px){
   h2 {
     width:467px;
+    line-height:42px;
   }
   span {
     display: none;
@@ -70,5 +71,12 @@ strong {
   }
   h2 {
     font-size: 24px;
+    line-height: 30px;
+    width: 320px;
+  }
+  #container {
+    width: auto;
+    margin-left: -160px;
+    margin-top: -116px;
   }
 }
