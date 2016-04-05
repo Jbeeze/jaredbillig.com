@@ -21,11 +21,13 @@ body {
   font-weight: 700;
   color: #fff;
   display: inline-block;
+  margin: 0;
+  padding-bottom: 15px;
 }
 
 #container h1:nth-child(2){
   position: relative;
-  left:-22px;
+  left:-21px;
 }
 
 h2 {
@@ -33,6 +35,8 @@ h2 {
   font-size: 36px;
   height: auto;
   width: 771px;
+  margin: 0;
+  padding-bottom: 15px;
 }
 
 a {
