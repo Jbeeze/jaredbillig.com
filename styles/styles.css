@@ -80,7 +80,6 @@ strong {
     margin-left: -234px;
   }
 }
-
 @media screen and (max-width: 460px) {
   h1 {
     font-size: 44px;
@@ -92,7 +91,7 @@ strong {
   }
   #container {
     width: auto;
-    margin-left: -160px;
-    margin-top: -116px;
+    margin-left: -155px;
+    margin-top: -170px;
   }
 }
