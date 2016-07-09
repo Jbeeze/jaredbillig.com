@@ -32,8 +32,18 @@ $(function() {
           }
 
           if ( e.which == ENTER_KEY ) {
+            var rgb = hexToRgb(color_input_value);
+            var opp_rgb = oppositeHex(rgb);
+
+            var r = opp_rgb['r'];
+            var g = opp_rgb['g'];
+            var b = opp_rgb['b'];
+
+            var rgb = "(" + r + "," + g + "," + b + ")";
             // color_input_value = "#" + color_input_value;
             $("#container").css("background-color", color_input_value);
+            $('#color').css("border-bottom", "2px solid rgb" + rgb);
+            $('#color').css("color", "rgb" + rgb);
           }
 
         }
@@ -43,9 +53,31 @@ $(function() {
       e.preventDefault();
     }
   });
-
 });
 
-function splitColumnts() {
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
 
+function oppositeHex(color) {
+  var r = color['r'];
+  var g = color['g'];
+  var b = color['b'];
+
+  r = Math.ceil( (Math.sqrt( Math.pow(255, 2) - Math.pow(r, 2) )) );
+  g = Math.ceil( (Math.sqrt( Math.pow(255, 2) - Math.pow(g, 2) )) );
+  b = Math.ceil( (Math.sqrt( Math.pow(255, 2) - Math.pow(b, 2) )) );
+
+  var rgb = {
+    'r' : r,
+    'g' : g,
+    'b' : b
+  }
+
+  return rgb;
 }
