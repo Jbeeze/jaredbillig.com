@@ -9,6 +9,10 @@ $(function() {
 
     var $new_swatch = $('.swatch').clone(true);
     $new_swatch.css('background-color', '#fff');
+    $new_swatch.children('#color').css({
+      'border-bottom': '2px solid #000',
+      'color' : '#000'
+    });
     $new_swatch.children('#color').val('');
     $new_swatch.appendTo('#container');
 
@@ -60,8 +64,12 @@ $(function() {
             var rgb = "(" + r + "," + g + "," + b + ")";
             // color_input_value = "#" + color_input_value;
             $(this).parent().css("background-color", color_input_value);
-            $(this).children().css("border-bottom", "2px solid rgb" + rgb);
-            $(this).children().css("color", "rgb" + rgb);
+
+            $(this).css({
+              "border-bottom": "2px solid rgb" + rgb,
+              "color": "rgb" + rgb
+            });
+
             $('.swatch:first').children('#addSwatch').css('color', 'rgb' + rgb);
           }
 
