@@ -1,5 +1,8 @@
 $(function() {
+  var column_count = 1;
   $('#addSwatch').on('click', function() {
+    column_count *= 2;
+    console.log(column_count);
     var width = $('.swatch').css("width").toString().split('');
     var new_width = '';
 
@@ -8,11 +11,16 @@ $(function() {
     }
 
     var $new_swatch = $('.swatch').clone(true);
-    $new_swatch.css('background-color', '#fff');
+    $new_swatch.css({
+      'background-color': '#fff',
+      'border-color': '#000' 
+    });
+
     $new_swatch.children('#color').css({
       'border-bottom': '2px solid #000',
       'color' : '#000'
     });
+
     $new_swatch.children('#color').val('');
     $new_swatch.appendTo('#container');
 
@@ -63,7 +71,10 @@ $(function() {
 
             var rgb = "(" + r + "," + g + "," + b + ")";
             // color_input_value = "#" + color_input_value;
-            $(this).parent().css("background-color", color_input_value);
+            $(this).parent().css({
+              "background-color": color_input_value,
+              "border-color": color_input_value
+            });
 
             $(this).css({
               "border-bottom": "2px solid rgb" + rgb,
