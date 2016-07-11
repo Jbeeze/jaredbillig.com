@@ -1,4 +1,22 @@
 $(function() {
+  $('#addSwatch').on('click', function() {
+    var width = $('.swatch').css("width").toString().split('');
+    var new_width = '';
+
+    for (var i = 0; i < width.length - 2; i++) {
+      new_width += width[i];
+    }
+
+    var $new_swatch = $('.swatch').clone(true);
+    $new_swatch.css('background-color', '#fff');
+    $new_swatch.children('#color').val('');
+    $new_swatch.appendTo('#container');
+
+    $('.swatch').css({
+      'width': new_width*=0.5
+    });
+  });
+
   var $swatch = $('.swatch');
   var $color_input = $("#color");
   var ENTER_KEY = 13;
@@ -12,11 +30,11 @@ $(function() {
   var max_length = 7;
 
   $color_input.on("keypress", function(e) {
-    var color_input_value = $color_input.val();
-    if ( e.which != HASH_KEY) {
+    var color_input_value = $(this).val();
+    if ( e.which != HASH_KEY ) {
 
       if ( color_input_value.length == 0 ) {
-        $color_input.val( "#" + color_input_value);
+        $(this).val( "#" + color_input_value);
       }
 
       else if ( color_input_value.length < 1 ) {
@@ -41,9 +59,10 @@ $(function() {
 
             var rgb = "(" + r + "," + g + "," + b + ")";
             // color_input_value = "#" + color_input_value;
-            $("#container").css("background-color", color_input_value);
-            $('#color').css("border-bottom", "2px solid rgb" + rgb);
-            $('#color').css("color", "rgb" + rgb);
+            $(this).parent().css("background-color", color_input_value);
+            $(this).children().css("border-bottom", "2px solid rgb" + rgb);
+            $(this).children().css("color", "rgb" + rgb);
+            $('.swatch:first').children('#addSwatch').css('color', 'rgb' + rgb);
           }
 
         }
@@ -54,6 +73,7 @@ $(function() {
     }
   });
 });
+
 
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
