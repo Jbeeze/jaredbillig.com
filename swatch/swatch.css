@@ -6,7 +6,6 @@ body {
 
 .swatch {
   height: 100%;
-  width: 100%;
   display: inline-block;
   float: left;
   border-right: 1px solid #000;

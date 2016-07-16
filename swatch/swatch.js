@@ -1,19 +1,24 @@
 $(function() {
   var column_count = 1;
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var width = w + 'px';
+
+  var width = $('.swatch').css({
+    "width": width
+  });
+
   $('#addSwatch').on('click', function() {
-    column_count *= 2;
+    column_count++;
     console.log(column_count);
-    var width = $('.swatch').css("width").toString().split('');
-    var new_width = '';
+    var width = $('.swatch').css({
+      "width": width
+    });
 
-    for (var i = 0; i < width.length - 2; i++) {
-      new_width += width[i];
-    }
+    var $new_swatch = $('#original-swatch').clone(true).removeAttr('id');
 
-    var $new_swatch = $('.swatch').clone(true);
     $new_swatch.css({
       'background-color': '#fff',
-      'border-color': '#000' 
+      'border-color': '#000'
     });
 
     $new_swatch.children('#color').css({
@@ -25,8 +30,9 @@ $(function() {
     $new_swatch.appendTo('#container');
 
     $('.swatch').css({
-      'width': new_width*=0.5
+      'width': w / column_count
     });
+
   });
 
   var $swatch = $('.swatch');
