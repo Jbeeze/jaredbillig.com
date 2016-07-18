@@ -35,6 +35,16 @@ $(function() {
 
   });
 
+  $('#deleteSwatch').on('click', function() {
+    column_count--;
+
+    $(this).parent().remove();
+
+    $('.swatch').css({
+      'width': w/column_count
+    })
+  });
+
   var $swatch = $('.swatch');
   var $color_input = $("#color");
   var ENTER_KEY = 13;
