@@ -18,6 +18,7 @@ body {
 #logo {
   width: 300px;
   height: auto;
+  padding-bottom: 30px;
 }
 
 a {
@@ -30,6 +31,7 @@ a {
 #links {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 #links > li {
@@ -42,7 +44,7 @@ a:hover,  a:focus {
   outline: none;
 }
 
-#large {
+span#large {
   font-size: 3em;
 }
 
