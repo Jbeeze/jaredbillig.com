@@ -46,6 +46,7 @@ a:hover,  a:focus {
 
 span#large {
   font-size: 3em;
+  font-weight: 700;
 }
 
 @media screen and (max-width: 770px){
