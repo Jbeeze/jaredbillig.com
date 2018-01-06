@@ -42,7 +42,7 @@ a:hover,  a:focus {
   outline: none;
 }
 
-strong {
+#large {
   font-size: 3em;
 }
 
