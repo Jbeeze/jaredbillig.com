@@ -30,7 +30,6 @@ a {
 #links {
   list-style: none;
   padding-left: 0;
-  margin: 0;
 }
 
 #links > li {
@@ -44,7 +43,7 @@ a:hover,  a:focus {
 }
 
 strong {
-  font-size: 29px;
+  font-size: 3em;
 }
 
 @media screen and (max-width: 770px){
