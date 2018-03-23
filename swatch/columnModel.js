@@ -1,8 +1,8 @@
 class Column {
-  constructor(color, width, elm) {
-    this.color = color;
+  constructor(width, elm_id, color) {
     this.width = width;
-    this.elm_id = elm;
+    this.elm_id = elm_id;
+    this.color = color;
 
     this.init();
   }
