@@ -10,6 +10,7 @@ $(function() {
   $('#addSwatch').on('click', function() {
     column_count++;
     console.log(column_count);
+
     var width = $('.swatch').css({
       "width": width
     });
