@@ -9,6 +9,8 @@ class Column {
   init() {
     this.setColor(this.color);
     this.setWidth(this.width);
+
+    this.setInputListener(this.input_id);
   }
 
   setColor(color) {
@@ -42,5 +44,26 @@ class Column {
     column.appendChild(input);
 
     return column;
+  }
+
+  getColumnElementById(id) {
+    return document.getElementById(id);
+  }
+
+  setInputListener(input_id) {
+    const input = document.getElementById(input_id);
+
+    input.addEventListener('keypress', e => this.checkForEnterKey(e, input))
+  }
+
+  checkForEnterKey(e, input) {
+    const key      = e.which || e.keyCode;
+
+    if (key === 13) {
+      const column = this.getColumnElementById(this.column_id);
+      const color  = input.value;
+
+      this.setColor(color);
+    }
   }
 }

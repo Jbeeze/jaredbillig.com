@@ -13,12 +13,9 @@ class SwatchController {
 
   addEventListeners() {
     const add_column_button    = document.getElementById('addSwatch');
-    const remove_column_button = document.getElementById('deleteSwatch');
-    const color_input          = document.getElementById('color0');
 
     add_column_button.addEventListener('click', () => this.addColumn());
-    // remove_column_button.addEventListener('click', () => this.removeColumn());
-    // color_input.addEventListener('keypress', e => this.checkForEnterKey(e, color_input));
+    // remove_column_button.addEventListener('click', () => this.removeColumn());;
   }
 
   addColumn() {
@@ -45,10 +42,6 @@ class SwatchController {
     return column;
   }
 
-  setColumnColor(column, color) {
-    column.setColor(color);
-  }
-
   setColumnWidth(column, width) {
     column.setWidth(width);
   }
@@ -63,15 +56,10 @@ class SwatchController {
     }
   }
 
-  checkForEnterKey(e, input) {
-    const key      = e.which || e.keyCode;
-
-    if (key === 13) {
-      const column = input.parentNode;
-      const color  = input.value;
-
-      this.setColumnColor(column, color);
-    }
+  findColumnByInputId(input_id) {
+    return this.columns.reduce(col => {
+      return col.input_id == input_id;
+    })
   }
 }
 
