@@ -1,8 +1,9 @@
 class Column {
-  constructor(width, elm_id, color) {
-    this.width = width;
-    this.elm_id = elm_id;
-    this.color = color;
+  constructor(column_id, width, color) {
+    this.column_id = "column" + column_id;
+    this.input_id  = "input" + column_id;
+    this.width     = width;
+    this.color     = color;
 
     this.init();
   }
@@ -13,10 +14,14 @@ class Column {
   }
 
   setColor(color) {
-    document.getElementById(this.elm_id).style.background = color;
+    document.getElementById(this.column_id).style.background = color;
   }
 
   setWidth(width) {
-    document.getElementById(this.elm_id).style.width = width;
+    document.getElementById(this.column_id).style.width = width;
+  }
+
+  getInputColor() {
+    return document.getElementById(this.input_id).value();
   }
 }

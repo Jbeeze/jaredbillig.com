@@ -7,41 +7,44 @@ class SwatchController {
   }
 
   init() {
-    this.createNewColumn(this.width_of_window, 'column0', "#fff");
+    this.createNewColumn(this.width_of_window, "#fff");
     this.addEventListeners();
   }
 
   addEventListeners() {
     const add_column_button    = document.getElementById('addSwatch');
     const remove_column_button = document.getElementById('deleteSwatch');
-    const color_input          = document.getElementById('color');
-    const self                 = this;
+    const color_input          = document.getElementById('color0');
 
     add_column_button.addEventListener('click', () => this.addColumn());
     remove_column_button.addEventListener('click', () => this.removeColumn());
     color_input.addEventListener('keypress', e => this.checkForEnterKey(e, color_input));
   }
 
-  addColumn() {
+  createNewColumn(width, color) {
+    const column_id = this.columns.length;
+    const column    = new Column(column_id, width, color);
+
+    this.addColumn(column);
+  }
+
+  addColumn(column) {
     const new_width       = this.width_of_window / (this.columns.length + 1);
-    const last_column     = document.getElementById(this.columns[length].elm_id);
-    const new_column      = last_column.cloneNode(true);
+    const column_elm      = document.createElement('div');
+    const container       = document.getElementById('container');
 
-    new_column.id = "column" + this.columns.length;
-    last_column.parentNode.appendChild(new_column);
+    column_elm.id = column.column_id;
+    column_elm.classList.add('swatch');
+    console.log(column_elm);
 
-    this.createNewColumn(new_width, new_column.id, '#fff');
+    container.appendChild(column_elm);
 
-    this.updateWidthOfColumns(new_width);
-  }
-
-  createNewColumn(width, elm_id, color) {
-    const column = new Column(width, elm_id, color);
     this.columns.push(column);
-  }
 
-  removeColumn() {
-    console.log('delete');
+    if (this.columns.length > 1) {
+      this.updateWidthOfColumns(new_width);
+    }
+
   }
 
   setColumnColor(column, color) {
@@ -50,6 +53,10 @@ class SwatchController {
 
   setColumnWidth(column, width) {
     column.setWidth(width);
+  }
+
+  getColumn(idx) {
+    return this.columns[idx];
   }
 
   updateWidthOfColumns(width) {
@@ -62,9 +69,9 @@ class SwatchController {
     const key      = e.which || e.keyCode;
 
     if (key === 13) {
-      console.log()
       const column = input.parentNode;
       const color  = input.value;
+
       this.setColumnColor(column, color);
     }
   }
