@@ -4,8 +4,6 @@ class Column {
     this.input_id  = "input" + column_id;
     this.width     = width;
     this.color     = color;
-
-    this.init();
   }
 
   init() {
@@ -23,5 +21,26 @@ class Column {
 
   getInputColor() {
     return document.getElementById(this.input_id).value();
+  }
+
+  getInput() {
+    const input = document.createElement('input');
+    input.id = this.input_id;
+    input.classList.add('color_input');
+    input.placeholder = '#';
+
+    return input;
+  }
+
+  getColumn() {
+    const column = document.createElement('div');
+    const input  = this.getInput();
+
+    column.id = this.column_id;
+    column.classList.add('swatch');
+
+    column.appendChild(input);
+
+    return column;
   }
 }

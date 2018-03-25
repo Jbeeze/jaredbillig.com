@@ -7,7 +7,7 @@ class SwatchController {
   }
 
   init() {
-    this.createNewColumn(this.width_of_window, "#fff");
+    this.addColumn();
     this.addEventListeners();
   }
 
@@ -17,27 +17,18 @@ class SwatchController {
     const color_input          = document.getElementById('color0');
 
     add_column_button.addEventListener('click', () => this.addColumn());
-    remove_column_button.addEventListener('click', () => this.removeColumn());
-    color_input.addEventListener('keypress', e => this.checkForEnterKey(e, color_input));
+    // remove_column_button.addEventListener('click', () => this.removeColumn());
+    // color_input.addEventListener('keypress', e => this.checkForEnterKey(e, color_input));
   }
 
-  createNewColumn(width, color) {
-    const column_id = this.columns.length;
-    const column    = new Column(column_id, width, color);
+  addColumn() {
+    const new_width = this.width_of_window / (this.columns.length + 1);
+    const container = document.getElementById('container');
 
-    this.addColumn(column);
-  }
+    const column    = this.createNewColumn(new_width, '#fff');
 
-  addColumn(column) {
-    const new_width       = this.width_of_window / (this.columns.length + 1);
-    const column_elm      = document.createElement('div');
-    const container       = document.getElementById('container');
-
-    column_elm.id = column.column_id;
-    column_elm.classList.add('swatch');
-    console.log(column_elm);
-
-    container.appendChild(column_elm);
+    container.appendChild(column.getColumn());
+    column.init();
 
     this.columns.push(column);
 
@@ -45,6 +36,13 @@ class SwatchController {
       this.updateWidthOfColumns(new_width);
     }
 
+  }
+
+  createNewColumn(width, color) {
+    const column_id = this.columns.length;
+    const column    = new Column(column_id, width, color);
+
+    return column;
   }
 
   setColumnColor(column, color) {
