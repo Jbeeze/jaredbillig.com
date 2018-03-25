@@ -14,10 +14,12 @@ class Column {
   }
 
   setColor(color) {
+    this.color = color;
     document.getElementById(this.column_id).style.background = color;
   }
 
   setWidth(width) {
+    this.width = width;
     document.getElementById(this.column_id).style.width = width;
   }
 
@@ -53,10 +55,10 @@ class Column {
   setInputListener(input_id) {
     const input = document.getElementById(input_id);
 
-    input.addEventListener('keypress', e => this.checkForEnterKey(e, input))
+    input.addEventListener('keypress', e => this.checkKeyPress(e, input))
   }
 
-  checkForEnterKey(e, input) {
+  checkKeyPress(e, input) {
     const key      = e.which || e.keyCode;
 
     if (key === 13) {
