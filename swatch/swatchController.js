@@ -15,7 +15,25 @@ class SwatchController {
     const add_column_button    = document.getElementById('addSwatch');
 
     add_column_button.addEventListener('click', () => this.addColumn());
+
+  }
+
+  setColumnListeners(column) {
+    const input = document.getElementById(column.input_id);
+
+    input.addEventListener('keypress', e => this.checkKeyPress(e, input));
     // remove_column_button.addEventListener('click', () => this.removeColumn());;
+  }
+
+  checkKeyPress(e, input) {
+    const key      = e.which || e.keyCode;
+
+    if (key === 13) {
+      const column = this.getColumnFromInputId(input.id);
+      const color  = input.value;
+
+      this.setColumnColor(column, color);
+    }
   }
 
   addColumn() {
@@ -29,10 +47,11 @@ class SwatchController {
 
     this.columns.push(column);
 
-    if (this.columns.length > 1) {
+    if (this.columns.length > 0) {
       this.updateWidthOfColumns(new_width);
     }
 
+    this.setColumnListeners(column);
   }
 
   createNewColumn(width, color) {
@@ -44,10 +63,28 @@ class SwatchController {
 
   setColumnWidth(column, width) {
     column.setWidth(width);
+    document.getElementById(column.column_id).style.width = width;
   }
 
-  getColumn(idx) {
-    return this.columns[idx];
+  setColumnColor(column, color) {
+    column.setColor(color);
+    document.getElementById(column.column_id).style.background = color;
+  }
+
+  getColumnElementById(column_id) {
+    return document.getElementById(column_id);
+  }
+
+  getInputFromColumnId(column_id) {
+    return document.getElementById(column);
+  }
+
+  getColumnFromInputId(input_id) {
+    return this.columns[input_id.split('')[input_id.length - 1]];
+  }
+
+  getInputColor(column_id) {
+    return this.getInputFromColumnId(column_id).value();
   }
 
   updateWidthOfColumns(width) {
@@ -59,7 +96,7 @@ class SwatchController {
   findColumnByInputId(input_id) {
     return this.columns.reduce(col => {
       return col.input_id == input_id;
-    })
+    });
   }
 }
 
