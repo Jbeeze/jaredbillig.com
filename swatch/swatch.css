@@ -8,7 +8,6 @@ body {
   height: 100%;
   display: inline-block;
   float: left;
-  border-right: 1px solid #000;
 }
 
 .color_input {
@@ -47,11 +46,28 @@ body {
   font-weight: 700;
 }
 
+@keyframes fade_out {
+  from {opacity: 1.0;}
+  to {opacity: 0.1};
+}
+
 .delete {
   font-size: 36px;
   background: transparent;
   border: 0;
   font-weight: 700;
-  color: red;
+  color: #ff0000;
   float: right;
+
+  animation-name: fade_out;
+  animation-duration: 500ms;
+  animation-delay: 500ms;
+  animation-fill-mode: forwards;
+}
+
+.delete:hover {
+  animation-name: fade_out;
+  animation-duration: 500ms;
+  animation-delay: 500ms;
+  animation-direction: reverse;
 }
