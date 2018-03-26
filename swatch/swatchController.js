@@ -3,6 +3,11 @@ class SwatchController {
     this.columns = [];
     this.width_of_window = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
+    this.keys = {
+      ENTER_KEY : 13,
+      HASH_KEY  : 35,
+    }
+
     this.init();
   }
 
@@ -18,17 +23,23 @@ class SwatchController {
 
   }
 
+  widthOfColumns(number_of_columns) {
+    return this.width_of_window / number_of_columns;
+  }
+
   setColumnListeners(column) {
-    const input = document.getElementById(column.input_id);
+    const input         = document.getElementById(column.input_id);
+    const delete_button = document.getElementById(column.delete_id);
 
     input.addEventListener('keypress', e => this.checkKeyPress(e, input));
-    // remove_column_button.addEventListener('click', () => this.removeColumn());;
+    delete_button.addEventListener('click', () => this.removeColumn(column));;
   }
 
   checkKeyPress(e, input) {
     const key      = e.which || e.keyCode;
+    const ENTER    = this.keys.ENTER_KEY;
 
-    if (key === 13) {
+    if (key === ENTER) {
       const column = this.getColumnFromInputId(input.id);
       const color  = input.value;
 
@@ -37,18 +48,18 @@ class SwatchController {
   }
 
   addColumn() {
-    const new_width = this.width_of_window / (this.columns.length + 1);
-    const container = document.getElementById('container');
+    const container        = document.getElementById('container');
+    const width_of_columns = this.widthOfColumns(this.columns.length + 1);
+    const column           = this.createNewColumn(width_of_columns, '#fff');
 
-    const column    = this.createNewColumn(new_width, '#fff');
 
-    container.appendChild(column.getColumn());
+    container.appendChild(column.elm);
     column.init();
 
     this.columns.push(column);
 
-    if (this.columns.length > 0) {
-      this.updateWidthOfColumns(new_width);
+    if (this.columns.length) {
+      this.updateWidthOfColumns(width_of_columns);
     }
 
     this.setColumnListeners(column);
@@ -61,9 +72,12 @@ class SwatchController {
     return column;
   }
 
-  setColumnWidth(column, width) {
-    column.setWidth(width);
-    document.getElementById(column.column_id).style.width = width;
+  removeColumn(column) {
+    this.columns.splice(column.id, 1);
+    column.elm.remove();
+    const width_of_columns = this.widthOfColumns(this.columns.length);
+
+    this.updateWidthOfColumns(width_of_columns);
   }
 
   setColumnColor(column, color) {
@@ -91,6 +105,11 @@ class SwatchController {
     for(let column of this.columns) {
       this.setColumnWidth(column, width);
     }
+  }
+
+  setColumnWidth(column, width) {
+    column.setWidth(width);
+    document.getElementById(column.column_id).style.width = width;
   }
 
   findColumnByInputId(input_id) {
