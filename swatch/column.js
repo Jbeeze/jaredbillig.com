@@ -1,9 +1,9 @@
 class Column {
-  constructor(column_id, width, color) {
-    this.id        = column_id;
-    this.column_id = "column" + column_id;
-    this.input_id  = "input" + column_id;
-    this.delete_id = "delete" + column_id;
+  constructor(id, width, color) {
+    this.id        = id;
+    this.column_id = "column" + this.id;
+    this.input_id  = "input" + this.id;
+    this.delete_id = "delete" + this.id;
     this.width     = width;
     this.color     = color;
 
@@ -58,5 +58,11 @@ class Column {
     column.appendChild(input);
 
     return column;
+  }
+
+  updateIds(id) {
+    this.column_id = "column" + id;
+    this.input_id  = "input" + id;
+    this.delete_id = "delete" + id;
   }
 }

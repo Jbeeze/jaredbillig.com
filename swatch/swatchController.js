@@ -1,4 +1,6 @@
 class SwatchController {
+  //TODO: Removing columns out of order breaks width adustmnet
+  //TODO: Create way to drag columns around
   constructor() {
     this.columns = [];
     this.width_of_window = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -12,7 +14,6 @@ class SwatchController {
   }
 
   init() {
-    this.addColumn();
     this.addEventListeners();
   }
 
@@ -21,10 +22,6 @@ class SwatchController {
 
     add_column_button.addEventListener('click', () => this.addColumn());
 
-  }
-
-  widthOfColumns(number_of_columns) {
-    return this.width_of_window / number_of_columns;
   }
 
   setColumnListeners(column) {
@@ -59,7 +56,7 @@ class SwatchController {
     this.columns.push(column);
 
     if (this.columns.length) {
-      this.updateWidthOfColumns(width_of_columns);
+      this.updateColumnProperties(width_of_columns);
     }
 
     this.setColumnListeners(column);
@@ -77,7 +74,7 @@ class SwatchController {
     column.elm.remove();
     const width_of_columns = this.widthOfColumns(this.columns.length);
 
-    this.updateWidthOfColumns(width_of_columns);
+    this.updateColumnProperties(width_of_columns);
   }
 
   setColumnColor(column, color) {
@@ -85,12 +82,16 @@ class SwatchController {
     document.getElementById(column.column_id).style.background = color;
   }
 
-  getColumnElementById(column_id) {
+  getColumnElmFromColumnId(column_id) {
     return document.getElementById(column_id);
   }
 
-  getInputFromColumnId(column_id) {
-    return document.getElementById(column);
+  getInputElmFromId(input_id) {
+    return document.getElementById(input_id);
+  }
+
+  getDeleteElmFromId(delete_id) {
+    return document.getElementById(delete_id);
   }
 
   getColumnFromInputId(input_id) {
@@ -101,15 +102,45 @@ class SwatchController {
     return this.getInputFromColumnId(column_id).value();
   }
 
-  updateWidthOfColumns(width) {
-    for(let column of this.columns) {
-      this.setColumnWidth(column, width);
+  widthOfColumns(number_of_columns) {
+    return this.width_of_window / number_of_columns;
+  }
+
+  updateColumnProperties(width) {
+    const columns = this.columns;
+
+    for(let i in columns) {
+      this.setColumnWidth(columns[i], width);
+      this.updateColumnIds(columns[i]);
     }
   }
 
   setColumnWidth(column, width) {
     column.setWidth(width);
     document.getElementById(column.column_id).style.width = width;
+  }
+
+  updateColumnIds(column) {
+    const index = this.findIndexByColumnId(column.id);
+    column.updateIds(index);
+    this.setIds(column, index);
+  }
+
+  findIndexByColumnId(id) {
+    return this.columns.find(column => column.id == id).id;
+  }
+
+  setIds(column, index) {
+    const { column_id, input_id, delete_id } = column;
+
+    const column_elm = this.getColumnElmFromColumnId(column_id);
+    const input_elm  = this.getInputElmFromId(input_id);
+    const delete_elm = this.getDeleteElmFromId(delete_id);
+    debugger;
+
+    column_elm.id = column_id;
+    input_elm.id  = input_id;
+    delete_elm.id = delete_id;
   }
 
   findColumnByInputId(input_id) {
