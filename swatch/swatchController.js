@@ -1,5 +1,4 @@
 class SwatchController {
-  //TODO: Removing columns out of order breaks width adustmnet
   //TODO: Create way to drag columns around
   constructor() {
     this.columns = [];
@@ -136,7 +135,6 @@ class SwatchController {
     const column_elm = this.getColumnElmFromColumnId(column_id);
     const input_elm  = this.getInputElmFromId(input_id);
     const delete_elm = this.getDeleteElmFromId(delete_id);
-    debugger;
 
     column_elm.id = column_id;
     input_elm.id  = input_id;
