@@ -5,8 +5,25 @@ class SwatchController {
     this.width_of_window = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
     this.keys = {
-      ENTER_KEY : 13,
-      HASH_KEY  : 35,
+      ENTER : 13,
+      HASH  : 35,
+      a: 97,
+      b: 98,
+      c: 99,
+      d: 100,
+      e: 101,
+      f: 102,
+      0: 48,
+      1: 49,
+      2: 50,
+      3: 51,
+      4: 52,
+      5: 53,
+      6: 54,
+      7: 55,
+      8: 56,
+      9: 57,
+      SHIFT: 16,
     }
 
     this.init();
@@ -32,14 +49,22 @@ class SwatchController {
   }
 
   checkKeyPress(e, input) {
-    const key      = e.which || e.keyCode;
-    const ENTER    = this.keys.ENTER_KEY;
+    const key              = e.key;
+    const an_allowable_key = e.key == "#" || !!this.keys[e.key];
+    let color_value        = input.value;
 
-    if (key === ENTER) {
+    if (!an_allowable_key || color_value.length == 7) {
+      e.preventDefault();
+    }
+
+    if (color_value.length < 1 && key != "#") {
+      input.value = "#" + color_value;
+    }
+
+    if (key == "Enter") {
       const column = this.getColumnFromInputId(input.id);
-      const color  = input.value;
 
-      this.setColumnColor(column, color);
+      this.setColumnColor(column, color_value);
     }
   }
 
@@ -122,6 +147,7 @@ class SwatchController {
   updateColumnIds(column) {
     const index = this.findIndexByColumnId(column.id);
     column.updateIds(index);
+
     this.setIds(column, index);
   }
 
