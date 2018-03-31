@@ -61,7 +61,6 @@ class Column {
   }
 
   updateIds(id) {
-    console.log(`Updating:${this.column_id} to column+${id}`)
     this.column_id = "column" + id;
     this.input_id  = "input" + id;
     this.delete_id = "delete" + id;

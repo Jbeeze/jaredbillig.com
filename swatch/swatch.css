@@ -20,6 +20,10 @@ body {
   background: transparent;
 }
 
+.color_input:focus {
+  outline: none;
+}
+
 #color:focus {
   outline: none;
 }
