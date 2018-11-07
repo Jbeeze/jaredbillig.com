@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Columns from './components/Columns/Columns';
+import Column from './components/Column/Column';
 
 import './App.css';
 
@@ -16,27 +16,27 @@ class App extends Component {
     ]
   }
 
-  keyDownHandler = (e) => {
+  keyDownHandler = (e, id) => {
     const key = e.keyCode;
     const color = e.target.value;
+
+    if (key === ENTER) {
+      this.changeColumnColor(color, id);
+    }
 
     if (e.target.value.length > 6 && key !== DELETE) {
       e.preventDefault();
     }
-
-    if (key === ENTER) {
-      this.changeColumnColor(color);
-    }
   }
 
-  changeColumnColor(color) {
+  changeColumnColor(color, id) {
     const columns_copy = [...this.state.columns];
 
     if (color.split('')[0] !== "#") {
       color = "#" + color;
     }
 
-    columns_copy[0].color = color;
+    columns_copy[id].color = color;
 
     this.setState({
       columns: columns_copy
@@ -44,12 +44,27 @@ class App extends Component {
   }
 
   render() {
+    let columns = null;
+
+    if (this.state.columns) {
+      columns = (
+        <>
+          {
+            this.state.columns.map((col, index) => {
+              return <Column
+                key={ col.id }
+                color={ col.color }
+                width={ col.width }
+                keyDown={(e) => this.keyDownHandler(e, index)}
+              />
+            })
+          }
+        </>
+      )
+    }
     return (
       <div className="App">
-        <Columns
-          keyDown={e => this.keyDownHandler(e)}
-          columns={ this.state.columns }
-        />
+        { columns }
       </div>
     );
   }
