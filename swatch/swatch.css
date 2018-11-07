@@ -8,6 +8,17 @@ body {
   height: 100%;
   display: inline-block;
   float: left;
+  cursor: pointer;
+  z-index: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.swatch:focus {
+  z-index: 1;
+  border: 0;
+
 }
 
 .color_input {

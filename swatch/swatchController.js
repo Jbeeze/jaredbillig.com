@@ -42,10 +42,10 @@ class SwatchController {
 
   setColumnListeners(column) {
     const input         = document.getElementById(column.input_id);
-    const delete_button = document.getElementById(column.delete_id);
+    // const delete_button = document.getElementById(column.delete_id);
 
     input.addEventListener('keypress', e => this.checkKeyPress(e, input));
-    delete_button.addEventListener('click', () => this.removeColumn(column));;
+    // delete_button.addEventListener('click', () => this.removeColumn(column));;
   }
 
   checkKeyPress(e, input) {

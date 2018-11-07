@@ -34,7 +34,7 @@ class Column {
   }
 
   getDeleteButton() {
-    const delete_button = document.createElement('button');
+    const delete_button = document.createElement('span');
     const plus          = document.createElement('i');
 
     delete_button.id = this.delete_id;
@@ -47,14 +47,14 @@ class Column {
   }
 
   getColumn() {
-    const column        = document.createElement('div');
+    const column        = document.createElement('button');
     const input         = this.getInput();
-    const delete_button = this.getDeleteButton();
+    // const delete_button = this.getDeleteButton();
 
     column.id = this.column_id;
     column.classList.add('swatch');
 
-    column.appendChild(delete_button);
+    // column.appendChild(delete_button);
     column.appendChild(input);
 
     return column;
