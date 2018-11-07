@@ -5,7 +5,7 @@ import classes from './Column.css';
 const column = ( props ) => {
   const column_attrs = {
     backgroundColor: props.color,
-    width: props.width,
+    width: (props.width + '%'),
   };
 
   return (

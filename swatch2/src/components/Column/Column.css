@@ -2,3 +2,13 @@
   height: 100vh;
   display: inline-block;
 }
+
+.Column input {
+  display: flex;
+  margin: 60px auto;
+  align-items: center;
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  font-size: 16px;
+}
