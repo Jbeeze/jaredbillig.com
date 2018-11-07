@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-import Layout from './containers/UI/Layout/Layout';
+import Layout from './components/UI/Layout/Layout';
 import Column from './components/Column/Column';
 
 import './App.css';
 
 const ENTER = 13;
-const DELETE = 8;
 
 class App extends Component {
   state = {
@@ -57,6 +56,20 @@ class App extends Component {
     });
   }
 
+  removeColumnHandler = (index) => {
+    const columns_copy = [...this.state.columns];
+
+    columns_copy.splice(index, 1);
+
+    columns_copy.map(col => {
+      col.width = 100 / columns_copy.length
+    });
+
+    this.setState({
+      columns: columns_copy
+    });
+  }
+
   render() {
     let columns = null;
 
@@ -64,7 +77,7 @@ class App extends Component {
       columns = (
         <>
           <Layout
-            clicked={ this.addColumnHandler }
+            addColumn={ this.addColumnHandler }
           >
           {
             this.state.columns.map((col, index) => {
@@ -73,6 +86,7 @@ class App extends Component {
                 color={ col.color }
                 width={ col.width }
                 keyDown={(e) => this.keyDownHandler(e, index)}
+                removeColumn={() => this.removeColumnHandler(index)}
               />
             })
           }

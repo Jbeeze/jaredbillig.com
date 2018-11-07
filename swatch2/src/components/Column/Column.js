@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from '../UI/Button/Button';
+
 import classes from './Column.css';
 
 const column = ( props ) => {
@@ -14,6 +16,7 @@ const column = ( props ) => {
       <input
         onKeyDown={ props.keyDown }
       />
+      <Button click={ props.removeColumn }>-</Button>
     </div>
   );
 }
