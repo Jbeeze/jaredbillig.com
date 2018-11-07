@@ -10,7 +10,8 @@ const DELETE = 8;
 class App extends Component {
   state = {
     columns: [
-      {id: 1, color: '#cc111c', width: '80%' },
+      {id: 1, color: '#cc111c', width: '50%' },
+      {id: 2, color: '#ddd111', width: '50%' },
     ]
   }
 
