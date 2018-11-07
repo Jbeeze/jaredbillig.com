@@ -40,11 +40,12 @@ class App extends Component {
   addColumnHandler = () => {
     const columns_copy = [...this.state.columns];
     const next_id = columns_copy.length + 1;
+    const width = columns_copy[0] ? columns_copy[0].width : '100';
 
     columns_copy.push({
       id: next_id,
       color: '#fff',
-      width: columns_copy[0].width
+      width: width
     });
 
     columns_copy.map(col => {
