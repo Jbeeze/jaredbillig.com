@@ -1,14 +1,17 @@
 import React from 'react';
 
+import classes from './Column.css';
+
 const column = ( props ) => {
   const column_attrs = {
     backgroundColor: props.color
   };
 
   return (
-    <div style={column_attrs}>
+    <div className={ classes.Column }
+      style={column_attrs}>
       <input
-        onSubmit={ props.change_color }
+        onKeyDown={ props.keyDown }
       />
     </div>
   );

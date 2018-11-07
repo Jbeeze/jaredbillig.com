@@ -4,6 +4,8 @@ import Column from './components/Column/Column';
 
 import './App.css';
 
+const ENTER = 13;
+
 class App extends Component {
   state = {
     columns: [
@@ -11,9 +13,23 @@ class App extends Component {
     ]
   }
 
-  changeColorHandler = (e) => {
+  keyDownHandler = (e) => {
+    const key = e.keyCode;
     const color = e.target.value;
 
+    if (key === ENTER) {
+      this.changeColumnColor(color);
+    }
+  }
+
+  changeColumnColor(color) {
+    const columns_copy = [...this.state.columns];
+
+    columns_copy[0].color = color;
+
+    this.setState({
+      columns: columns_copy
+    });
   }
 
   render() {
@@ -22,6 +38,7 @@ class App extends Component {
         <Column
           color={this.state.columns[0].color}
           width={this.state.columns[0].width}
+          keyDown={e => this.keyDownHandler(e)}
         />
       </div>
     );
