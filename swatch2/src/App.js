@@ -10,7 +10,7 @@ const ENTER = 13;
 class App extends Component {
   state = {
     columns: [
-      {id: 1, color: '#fff', width: '100' },
+      {id: 1, color: '#fff', width: '100', active: false },
     ]
   }
 
@@ -71,6 +71,17 @@ class App extends Component {
     });
   }
 
+  touchHandler = (index) => {
+    const canShow = this.state.columns[index].active;
+    const columns_copy = [...this.state.columns];
+    
+    columns_copy[index].active = !canShow;
+
+    this.setState({
+      columns: columns_copy
+    });
+  }
+
   render() {
     let columns = null;
 
@@ -86,6 +97,10 @@ class App extends Component {
                 key={ col.id }
                 color={ col.color }
                 width={ col.width }
+                isActive={ col.active }
+                click={ () => this.moveColumnHandler(index)}
+                touchStart={ () => this.touchHandler(index)}
+                touchEnd={ () => this.touchHandler(index)}
                 keyDown={(e) => this.keyDownHandler(e, index)}
                 removeColumn={() => this.removeColumnHandler(index)}
               />

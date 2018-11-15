@@ -6,8 +6,9 @@ const layout = ( props ) => {
   return (
     <div>
       <Button
-        click={ props.addColumn }
-        removeColumn={ props.removeColumn }>+</Button>
+        click={ props.addColumn }>
+        Add
+      </Button>
       { props.children }
     </div>
   )

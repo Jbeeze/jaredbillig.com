@@ -10,13 +10,31 @@ const column = ( props ) => {
     width: (props.width + '%'),
   };
 
+  const classNames = [classes.Column];
+
+  if (props.isActive) {
+    classNames.push(classes.Active);
+  }
+
   return (
-    <div className={ classes.Column }
-      style={column_attrs}>
+    <div
+      className={ classNames.join(' ') }
+      onTouchStart={ props.touchStart }
+      onTouchEnd={ props.touchEnd }
+      onMouseUp={ props.touchEnd }
+      onMouseDown={ props.touchStart }
+      style={column_attrs}
+    >
+
       <input
         onKeyDown={ props.keyDown }
       />
-      <Button click={ props.removeColumn }>-</Button>
+
+      <Button
+        click={ props.removeColumn }
+        btnType="Remove">
+        Remove
+      </Button>
     </div>
   );
 }

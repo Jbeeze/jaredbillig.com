@@ -1,14 +1,21 @@
 .Column {
-  height: 100vh;
-  display: inline-block;
+  height: 70vh;
+  display: inline-flex;
+  margin-top: 100px;
+  /* align-items: center; */
+  transition: box-shadow ease-in-out 0.5s;
+  cursor: pointer;
 }
 
 .Column input {
-  display: flex;
+  display: inline-block;
   margin: 60px auto;
-  align-items: center;
   width: 150px;
   height: 30px;
   text-align: center;
   font-size: 16px;
+}
+
+.Active {
+  box-shadow: 7px 3px 44px 8px #000;
 }
